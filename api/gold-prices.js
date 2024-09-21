@@ -61,6 +61,8 @@ module.exports = async (req, res) => {
           update_gold_price: updateGoldPrice,
           update_kurs_bi: updateKursBi,
           source: 'https://harga-emas.org',
+          credit: 'Powered by Windy, creator of this API',
+          website: 'https://windyapriliani.notion.site/Windy-Apriliani-85f148078a5e48d79313928260470bf9'
         };
 
         // Adding Security Headers here

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi API Harga Emas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #e9e9e9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        code {
+            color: #d14;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        a {
+            color: #1a73e8;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dokumentasi API Harga Emas</h1>
+        <p>API ini menyediakan data harga emas terbaru dalam berbagai satuan (contoh: ons, gram, kilogram) dari <a href="https://harga-emas.org">harga-emas.org</a>.</p>
+    </header>
+
+    <section class="container">
+        <h2>Overview</h2>
+        <p>API Harga Emas memungkinkan pengguna untuk mengakses data harga emas secara langsung dalam USD dan IDR. Data diambil dari sumber eksternal dan dikembalikan dalam format JSON agar mudah diakses.</p>
+        <p><strong>Base URL:</strong> <code>https://your-api.vercel.app</code></p>
+    </section>
+
+    <section class="container">
+        <h2>Endpoints</h2>
+        <h3>1. Mendapatkan Harga Emas Saat Ini</h3>
+        <p>Endpoint ini digunakan untuk mendapatkan harga emas terbaru.</p>
+        <p><strong>Method:</strong> GET</p>
+        <p><strong>URL:</strong> <code>/api/gold-prices</code></p>
+        <p><strong>Contoh Request:</strong></p>
+        <pre><code>GET https://your-api.vercel.app/api/gold-prices</code></pre>
+
+        <h3>Response</h3>
+        <p>Response dikembalikan dalam format JSON. Berikut adalah contoh response yang akan diterima:</p>
+        <pre><code>{
+    "usd": {
+        "oz": "1800",
+        "gr": "57.87",
+        "kg": "57870"
+    },
+    "kurs_bi": {
+        "oz": "26000",
+        "gr": "830.50",
+        "kg": "830500"
+    },
+    "idr": {
+        "oz": "400000",
+        "gr": "12800",
+        "kg": "12800000"
+    },
+    "update_gold_price": "2024-09-21",
+    "update_kurs_bi": "2024-09-21",
+    "source": "https://harga-emas.org",
+    "credit": "Powered by Windy, creator of this API",
+    "website": "https://your-website.com"
+}</code></pre>
+        <p>Response ini mencakup harga emas dalam satuan ons, gram, dan kilogram dalam USD dan IDR, serta waktu pembaruan data.</p>
+    </section>
+
+    <section class="container">
+        <h2>Attribution</h2>
+        <p>Jika kamu menggunakan API ini dalam proyek kamu, harap berikan kredit sebagai berikut:</p>
+        <ul>
+            <li><strong>Kredit:</strong> Powered by <a href="https://your-website.com">Windy</a></li>
+            <li><strong>Link:</strong> Sertakan tautan ke <a href="https://your-website.com">https://your-website.com</a></li>
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2>Rate Limiting</h2>
+        <p>API Harga Emas memiliki batasan permintaan (rate-limiting) sebesar 100 requests per IP setiap 15 menit. Jika kamu melebihi batas ini, kamu akan menerima response 429 (Too Many Requests). Pastikan untuk menggunakan caching atau menunda permintaan untuk menghindari masalah ini.</p>
+    </section>
+
+    <section class="container">
+        <h2>Error Handling</h2>
+        <h3>Kesalahan Umum:</h3>
+        <ul>
+            <li><strong>500 Internal Server Error:</strong> Terjadi jika ada masalah dalam mengambil data dari sumber eksternal.</li>
+            <li><strong>429 Too Many Requests:</strong> Terjadi jika kamu melebihi batas permintaan sebesar 100 requests dalam 15 menit.</li>
+        </ul>
+        <p>Jika terjadi error, API akan mengembalikan pesan error dalam format JSON:</p>
+        <pre><code>{
+    "error": "Failed to fetch data"
+}</code></pre>
+    </section>
+
+    <section class="container">
+        <h2>Terms of Use</h2>
+        <p>Dengan menggunakan API ini, kamu setuju dengan ketentuan berikut:</p>
+        <ul>
+            <li>Memberikan kredit kepada Windy sebagai pembuat API ini (lihat bagian Attribution di atas).</li>
+            <li>Tidak menyalahgunakan layanan (contoh: melebihi batas permintaan atau penggunaan berbahaya).</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Windy. Hak cipta dilindungi undang-undang.</p>
+    </footer>
+</body>
+</html>

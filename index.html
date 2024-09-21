@@ -1,18 +1,129 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Lihat harga emas hari ini di Indonesia secara real-time. Harga emas terbaru untuk investasi dan pembelian emas fisik.">
     <title>Harga Emas Hari Ini di Indonesia - Real-Time Update</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #343a40;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav a:hover {
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        pre {
+            background-color: #f1f3f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Harga Emas Hari Ini di Indonesia</h1>
-    <p>Lihat harga emas terbaru untuk investasi, pembelian, dan penjualan di Indonesia. Update setiap hari secara real-time.</p>
 
-    <pre id="json-output">Loading data...</pre>
+    <header>
+        <h1>Harga Emas Hari Ini di Indonesia</h1>
+        <p>Lihat harga emas terbaru untuk investasi, pembelian, dan penjualan di Indonesia. Update setiap hari secara real-time.</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/api/gold-prices">Data Harga Emas</a>
+        <a href="/doc">Dokumentasi API</a>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <h2>Harga Emas Hari Ini</h2>
+            <pre id="json-output">Loading data...</pre>
+        </section>
+
+        <section id="data">
+            <h2>Data Harga Emas</h2>
+            <p>Informasi harga emas dalam satuan ons, gram, dan kilogram, yang di-update secara real-time. Data ini berguna untuk referensi investasi emas fisik di Indonesia.</p>
+        </section>
+
+        <section id="documentation">
+            <h2>Dokumentasi API Harga Emas</h2>
+            <p>API ini menyediakan data harga emas terbaru dalam berbagai satuan. Endpoint tersedia di:</p>
+            <pre><code>GET /api/gold-prices</code></pre>
+            <p>Contoh response JSON:</p>
+            <pre><code>{
+    "usd": {
+        "oz": "1800",
+        "gr": "57.87",
+        "kg": "57870"
+    },
+    "kurs_bi": {
+        "oz": "26000",
+        "gr": "830.50",
+        "kg": "830500"
+    },
+    "idr": {
+        "oz": "400000",
+        "gr": "12800",
+        "kg": "12800000"
+    },
+    "update_gold_price": "2024-09-21",
+    "update_kurs_bi": "2024-09-21",
+    "source": "https://harga-emas.org",
+    "credit": "Powered by Windy, creator of this API",
+    "website": "https://your-website.com"
+}</code></pre>
+            <p>Untuk informasi lebih lanjut, kunjungi bagian <strong>Dokumentasi API</strong> di halaman ini.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Windy. Semua Hak Dilindungi.</p>
+    </footer>
 
     <script>
         // Fetch the JSON data from the server and display it
@@ -33,5 +144,6 @@
         // Call the function to fetch data on page load
         fetchGoldPrices();
     </script>
+
 </body>
 </html>

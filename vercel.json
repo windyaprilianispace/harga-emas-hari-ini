@@ -16,6 +16,10 @@
       "dest": "/api/gold-prices.js"
     },
     {
+      "src": "/doc",
+      "dest": "/documentation.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
