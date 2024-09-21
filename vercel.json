@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "api/*.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/gold-prices",
-      "dest": "/server.js"
+      "src": "/api/gold-prices",
+      "dest": "/api/gold-prices.js"
     },
     {
       "src": "/(.*)",

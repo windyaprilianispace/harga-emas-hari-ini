@@ -1,24 +1,17 @@
-import cors from 'cors';
-import express from 'express';
-import { parseHTML } from 'linkedom';
-import path from 'path';
+// api/gold-prices.js
+const { parseHTML } = require('linkedom');
+const fetch = require('node-fetch');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Enable CORS
-app.use(cors());
-
-// Serve the index.html file at the root URL
-app.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'index.html'));
-});
-
-// Define the route handler for the JSON endpoint
-app.get('/gold-prices', async (req, res) => {
+module.exports = async (req, res) => {
   const URL_SOURCE = 'https://harga-emas.org/widget/widget.php?v_widget_type=current_gold_price';
+  
   try {
-    const html = await fetch(URL_SOURCE).then(r => r.text());
+    const response = await fetch(URL_SOURCE);
+    if (!response.ok) {
+      throw new Error(`External API responded with status ${response.status}`);
+    }
+    
+    const html = await response.text();
     const { document } = parseHTML(html);
 
     const rows = [...document.querySelectorAll('tr')];
@@ -42,7 +35,7 @@ app.get('/gold-prices', async (req, res) => {
         oz: usdRow[3].textContent.trim(),
         gr: kursBiRow[3].textContent.trim(),
         kg: idrRow[3].textContent.trim(),
-      }
+      },
     ];
 
     const updateInfo = rows[5].querySelectorAll('strong');
@@ -58,13 +51,10 @@ app.get('/gold-prices', async (req, res) => {
       source: 'https://harga-emas.org',
     };
 
-    res.json(result);
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(result);
   } catch (error) {
     console.error('Error fetching data:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running at ${PORT}`);
-});
+};

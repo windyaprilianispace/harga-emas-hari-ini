@@ -15,7 +15,7 @@
         // Fetch the JSON data from the server and display it
         async function fetchGoldPrices() {
             try {
-                const response = await fetch('/gold-prices');
+                const response = await fetch('/api/gold-prices');
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

@@ -1,10 +1,9 @@
 {
-  "name": "hargaemas",
+  "name": "harga-emas-hari-ini",
   "version": "1.0.0",
-  "main": "server.js",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "vercel dev"
   },
   "keywords": [],
   "author": "",
