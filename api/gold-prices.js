@@ -6,11 +6,13 @@ const rateLimit = require('express-rate-limit');
 // CORS handler
 const corsHandler = cors({ origin: '*' });
 
-// Rate limiting
+// Rate limiting with trustProxy set to true
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
   message: 'Too many requests, please try again later.',
+  keyGenerator: (req, res) => req.headers['x-forwarded-for'] || req.ip, // Use x-forwarded-for header for IP
+  trustProxy: true // Enable trust proxy since Vercel runs behind a proxy
 });
 
 module.exports = async (req, res) => {
@@ -80,4 +82,3 @@ module.exports = async (req, res) => {
     });
   });
 };
-
