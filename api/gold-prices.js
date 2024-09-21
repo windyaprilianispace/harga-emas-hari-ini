@@ -1,16 +1,15 @@
 // api/gold-prices.js
 const { parseHTML } = require('linkedom');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch');  // Ensure you have node-fetch installed
 
 module.exports = async (req, res) => {
   const URL_SOURCE = 'https://harga-emas.org/widget/widget.php?v_widget_type=current_gold_price';
-  
   try {
     const response = await fetch(URL_SOURCE);
     if (!response.ok) {
       throw new Error(`External API responded with status ${response.status}`);
     }
-    
+
     const html = await response.text();
     const { document } = parseHTML(html);
 
@@ -35,7 +34,7 @@ module.exports = async (req, res) => {
         oz: usdRow[3].textContent.trim(),
         gr: kursBiRow[3].textContent.trim(),
         kg: idrRow[3].textContent.trim(),
-      },
+      }
     ];
 
     const updateInfo = rows[5].querySelectorAll('strong');
