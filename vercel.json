@@ -31,7 +31,7 @@
   "crons": [
     {
       "path": "/api/gold-prices",
-      "schedule": "0 2,5 * * *"  // Triggers at 2 AM and 5 AM UTC (which is 9 AM and 12 PM GMT+7)
+      "schedule": "0 2,5 * * *"  
     }
   ]
 }
